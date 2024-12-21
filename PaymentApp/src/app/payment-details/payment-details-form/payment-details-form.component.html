@@ -1,0 +1,54 @@
+<form #form="ngForm" (submit)="onSubmit(form)" [class.submitted]="service.formSubmitted" novalidate autocomplete="off">
+  <div class="row">
+    <div class="mb-3">
+      <label>Card Owner Name</label>
+      <input
+        class="form-control form-control-lg"
+        placeholder="Andrii Yushkevych"
+        #cardOwnerName="ngModel"
+        name="cardOwnerName"
+        [(ngModel)]="service.formData.cardOwnerName"
+        required pattern="^[A-Z][a-z'-]{1,49}(?: [A-Z][a-z'-]{1,49})+$"
+      >
+    </div>
+    <div class="mb-3">
+      <label>Card Number</label>
+      <input
+        class="form-control form-control-lg"
+        placeholder="1111 1111 1111 1111"
+        #cardNumber="ngModel"
+        name="cardNumber"
+        [(ngModel)]="service.formData.cardNumber"
+        required minlength="16" maxlength="16" pattern="\d{16}"
+      >
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="mb-3 col-6">
+      <label>Expiration date</label>
+      <input
+        class="form-control form-control-lg"
+        placeholder="MM/YY"
+        #expirationDate="ngModel"
+        name="expirationDate"
+        [(ngModel)]="service.formData.expirationDate"
+        required minlength="10" maxlength="10" pattern="^(?:(\d{4})-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|02-(?:0[1-9]|1\d|2[0-8]))|(?:([13579][26]|[2468][048]|[02468]0)-02-29))$"
+      >
+    </div>
+    <div class="mb-3 col-6">
+      <label>CVV</label>
+      <input
+        class="form-control form-control-lg"
+        placeholder="111" type="password"
+        #cardVerificationValue="ngModel"
+        name="cardVerificationValue"
+        [(ngModel)]="service.formData.cardVerificationValue"
+        required minlength="3" maxlength="3" pattern="\d{3}"
+      >
+    </div>
+  </div>
+  <div class="d-grid">
+    <button class="btn btn-lg btn-success" type="submit">Submit</button>
+  </div>
+</form>
